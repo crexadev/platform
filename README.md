@@ -18,6 +18,7 @@ Early development. The application foundation is in place; product features are 
 
 - Node.js 20.9 or later
 - pnpm
+- A Neon PostgreSQL `DATABASE_URL` in `.env.local`
 
 ## Local development
 
@@ -25,9 +26,21 @@ All Git and application commands must be run inside the `platform/` directory.
 
 ```bash
 cd platform
+cp .env.example .env.local
 pnpm install
 pnpm dev
 ```
+
+On Windows PowerShell:
+
+```powershell
+cd platform
+Copy-Item .env.example .env.local
+pnpm install
+pnpm dev
+```
+
+Set a valid `DATABASE_URL` in `.env.local` before running server features that require the database. See [docs/postgresql-foundation.md](docs/postgresql-foundation.md) for database setup details.
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
@@ -43,4 +56,5 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## External services
 
-No external services (databases, authentication, storage, payments, or analytics) are configured yet.
+- **PostgreSQL (Neon)** — development database connection configured locally via `DATABASE_URL`
+- Authentication, storage, payments, and analytics are not configured yet
