@@ -1,0 +1,60 @@
+# Normalize line endings for text files on checkout/commit
+* text=auto
+
+# Source code — LF in the repository
+*.cjs text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.jsx text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.mjs text eol=lf
+*.mts text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+
+# Shell scripts — LF
+*.sh text eol=lf
+
+# Windows command files — CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Images
+*.gif binary
+*.ico binary
+*.jpeg binary
+*.jpg binary
+*.png binary
+*.svg binary
+*.webp binary
+
+# Audio
+*.aac binary
+*.flac binary
+*.m4a binary
+*.mp3 binary
+*.ogg binary
+*.wav binary
+
+# Video
+*.avi binary
+*.mov binary
+*.mp4 binary
+*.webm binary
+
+# Fonts
+*.eot binary
+*.otf binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+
+# Archives
+*.7z binary
+*.gz binary
+*.tar binary
+*.zip binary
