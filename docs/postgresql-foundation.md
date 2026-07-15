@@ -13,13 +13,21 @@ CREXA uses managed PostgreSQL through Neon for structured application data.
 | Variable | Purpose |
 |---|---|
 | `DATABASE_URL` | Primary pooled PostgreSQL connection for server-side application use |
-| `DATABASE_URL_UNPOOLED` | Optional direct connection for future migration tooling |
+| `DATABASE_URL_UNPOOLED` | Direct connection for Drizzle Kit migrations and Studio |
 
 ### Local setup
 
 1. Copy `.env.example` to `.env.local`
 2. Set a valid `DATABASE_URL` from the Neon project
-3. Add `DATABASE_URL_UNPOOLED` only when direct migration access is required
+3. Add `DATABASE_URL_UNPOOLED` for Drizzle Kit migrations and Studio
+
+## Access layer
+
+- **Drizzle ORM** is the accepted database access layer per [ADR 005](decisions/005-orm-selection.md).
+- Runtime application code uses `DATABASE_URL` through the server-only client in `src/db/index.ts`.
+- Drizzle Kit uses `DATABASE_URL_UNPOOLED` when available for migration tooling.
+
+See [drizzle-standards.md](drizzle-standards.md) for migration and query rules.
 
 ### Rules
 
@@ -38,18 +46,16 @@ CREXA uses managed PostgreSQL through Neon for structured application data.
 
 ## Current scope
 
-- No ORM is configured
-- No tables or migrations exist
-- No application database client exists
+- Drizzle ORM foundation is configured
+- No application tables exist
+- No migrations have been generated or applied
+- A server-only runtime database client exists in `src/db/index.ts`
 - No production database environment exists yet
 
 ## Future workflow
 
-The next database task will:
+The next database tasks will:
 
-1. Choose and configure **Drizzle** or **Prisma**
-2. Add a server-only database client
-3. Establish migration practices
-4. Introduce the first approved schema
-
-Do not assume an ORM has already been selected.
+1. Introduce the first approved schema tables
+2. Generate and review SQL migrations
+3. Apply migrations after explicit approval

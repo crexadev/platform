@@ -51,8 +51,21 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 | `pnpm install` | Install dependencies |
 | `pnpm dev` | Start the development server |
 | `pnpm lint` | Run ESLint |
+| `pnpm typecheck` | Run TypeScript without emitting files |
 | `pnpm build` | Create a production build |
 | `pnpm start` | Serve the production build |
+| `pnpm db:generate` | Generate SQL migrations from the Drizzle schema (review before applying) |
+| `pnpm db:migrate` | Apply approved SQL migrations |
+| `pnpm db:studio` | Open Drizzle Studio (connects to the configured database) |
+| `pnpm db:check` | Validate migration consistency |
+
+## Database tooling
+
+CREXA uses **Drizzle ORM** with Neon PostgreSQL. See [docs/drizzle-standards.md](docs/drizzle-standards.md) for schema, migration, and query rules.
+
+- No application schema exists yet.
+- Review generated SQL before running `pnpm db:migrate`.
+- `pnpm db:studio` connects to the configured database and can modify data; use with care.
 
 ## External services
 
