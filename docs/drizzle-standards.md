@@ -17,6 +17,9 @@ CREXA uses Drizzle ORM with Neon PostgreSQL for server-side database access and 
 | `drizzle.config.ts` | Drizzle Kit configuration for migrations and Studio |
 | `src/db/index.ts` | Server-only runtime Drizzle client |
 | `src/db/schema/index.ts` | Schema entry point for approved tables |
+| `src/db/schema/users.ts` | Internal CREXA user identity table |
+| `src/db/schema/external-identities.ts` | Provider-independent auth identity mappings |
+| `src/db/schema/relations.ts` | Drizzle relationship definitions |
 | `drizzle/` | Generated SQL migration output directory |
 
 ## Schema rules
@@ -62,7 +65,8 @@ CREXA uses Drizzle ORM with Neon PostgreSQL for server-side database access and 
 
 ## Current boundary
 
-- No application tables exist.
-- No migration has been generated.
-- No migration has been applied.
-- No database data changed during the Drizzle foundation task.
+- Identity schema (`users`, `external_identities`) is defined in TypeScript.
+- Migration `0000_identity_foundation` is generated but **not applied**.
+- Database tables do not yet exist in Neon.
+- No CREXA user has been provisioned.
+- See [identity-schema.md](identity-schema.md) for identity table rules.

@@ -76,9 +76,9 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Database tooling
 
-CREXA uses **Drizzle ORM** with Neon PostgreSQL. See [docs/drizzle-standards.md](docs/drizzle-standards.md) for schema, migration, and query rules.
+CREXA uses **Drizzle ORM** with Neon PostgreSQL. See [docs/drizzle-standards.md](docs/drizzle-standards.md) for schema, migration, and query rules. See [docs/identity-schema.md](docs/identity-schema.md) for the provider-independent identity tables.
 
-- No application schema exists yet.
+- Identity migration `0000_identity_foundation` is generated but **not applied**.
 - Review generated SQL before running `pnpm db:migrate`.
 - `pnpm db:studio` connects to the configured database and can modify data; use with care.
 
