@@ -19,6 +19,9 @@ Early development. The application foundation is in place; product features are 
 - Node.js 20.9 or later
 - pnpm
 - A Neon PostgreSQL `DATABASE_URL` in `.env.local`
+- Clerk development keys in `.env.local`:
+  - `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`
+  - `CLERK_SECRET_KEY`
 
 ## Local development
 
@@ -41,6 +44,18 @@ pnpm dev
 ```
 
 Set a valid `DATABASE_URL` in `.env.local` before running server features that require the database. See [docs/postgresql-foundation.md](docs/postgresql-foundation.md) for database setup details.
+
+Add Clerk development keys to `.env.local` before running authentication. See [docs/clerk-standards.md](docs/clerk-standards.md) for Clerk setup rules.
+
+## Authentication routes
+
+| Route | Purpose |
+| --- | --- |
+| `/sign-in` | Sign in with Clerk |
+| `/sign-up` | Create a Clerk account |
+| `/account` | Protected account test route (requires authentication) |
+
+The homepage remains public.
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
@@ -70,4 +85,5 @@ CREXA uses **Drizzle ORM** with Neon PostgreSQL. See [docs/drizzle-standards.md]
 ## External services
 
 - **PostgreSQL (Neon)** — development database connection configured locally via `DATABASE_URL`
-- Authentication, storage, payments, and analytics are not configured yet
+- **Clerk** — development authentication configured locally via Clerk environment variables
+- Storage, payments, and analytics are not configured yet
