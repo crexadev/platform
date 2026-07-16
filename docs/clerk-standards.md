@@ -7,8 +7,9 @@ CREXA uses Clerk for authentication per [ADR 007](decisions/007-authentication-a
 - **Clerk** owns authentication credentials, sessions, and verification flows.
 - **CREXA** owns product data in Neon PostgreSQL.
 - Product tables must **never reference Clerk user IDs directly**.
-- Internal CREXA user and external identity mapping will be implemented in a later approved task.
-- Lazy user provisioning and verified webhooks are later approved tasks.
+- CREXA internal users and provider identity mappings are owned in Neon.
+- Lazy provisioning resolves an authenticated Clerk user at `/account`.
+- Verified webhooks are a later approved task.
 
 ## Environment variables
 
@@ -51,7 +52,7 @@ Client-side auth visibility uses Clerk v7 `Show` with `when="signed-in"` or `whe
 - Do not copy unnecessary Clerk profile data into Neon.
 - Do not store passwords, session tokens, or refresh tokens in CREXA tables.
 - Do not connect product tables directly to Clerk IDs.
-- Lazy CREXA-user provisioning is a later approved task.
+- Lazy CREXA-user provisioning runs only after authenticated access to an approved protected resource.
 - Verified Clerk webhooks are a later approved lifecycle task.
 
 ## Security
@@ -65,8 +66,7 @@ Client-side auth visibility uses Clerk v7 `Show` with `when="signed-in"` or `whe
 ## Current boundary
 
 - Clerk foundation is configured in the application.
-- No CREXA user table exists.
-- No external identity table exists.
-- No lazy synchronization exists.
+- CREXA user and external identity tables exist in Neon.
+- `/account` is the initial lazy-provisioning trigger.
 - No webhook endpoint exists.
 - No authorization roles or permissions exist.

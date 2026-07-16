@@ -52,16 +52,15 @@ Deleting an external identity row does not delete the CREXA user.
 
 ## Lifecycle
 
-- Lazy provisioning will be added in a later approved task.
+- Lazy provisioning resolves the authenticated Clerk user on the first approved protected-resource request. `/account` is the initial trigger.
 - Verified Clerk webhooks will be added in a later approved task.
 - Deletion and suspension policies require separate approval.
 - `updated_at` is application-maintained until a separately approved database-trigger strategy exists.
 
 ## Current boundary
 
-- Identity migration is generated but not applied.
-- Database tables do not yet exist in Neon.
-- No CREXA user has been provisioned.
-- No Clerk ID has been persisted.
+- Identity migration is applied in the development database.
+- `users` and `external_identities` are provisioned lazily after authenticated protected-resource access.
+- No Clerk ID is used as a product-table foreign key.
 
 See [drizzle-standards.md](drizzle-standards.md) for migration workflow rules.
