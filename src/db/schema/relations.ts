@@ -1,10 +1,12 @@
 import { relations } from "drizzle-orm";
 
 import { externalIdentities } from "./external-identities";
+import { profiles } from "./profiles";
 import { users } from "./users";
 
-export const usersRelations = relations(users, ({ many }) => ({
+export const usersRelations = relations(users, ({ many, one }) => ({
   externalIdentities: many(externalIdentities),
+  profile: one(profiles),
 }));
 
 export const externalIdentitiesRelations = relations(
@@ -16,3 +18,10 @@ export const externalIdentitiesRelations = relations(
     }),
   }),
 );
+
+export const profilesRelations = relations(profiles, ({ one }) => ({
+  user: one(users, {
+    fields: [profiles.userId],
+    references: [users.id],
+  }),
+}));

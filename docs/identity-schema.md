@@ -34,6 +34,10 @@ Maps a CREXA user to an external authentication provider account.
 | `created_at` | `timestamptz` | Set on insert |
 | `updated_at` | `timestamptz` | Application-maintained on update |
 
+## Product-owned extensions
+
+`profiles` is a separate, product-owned one-to-one extension of `users`. It uses the internal CREXA UUID and does not reference Clerk identifiers. See [profile-foundation.md](profile-foundation.md).
+
 ## Data ownership
 
 - **Clerk** owns credentials, sessions, and authentication flows.
